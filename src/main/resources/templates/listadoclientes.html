@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clientes | Videoclub Sakila</title>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh;
+      background: linear-gradient(180deg, #001f3f, #003366); color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    main { flex: 1; padding: 2rem; max-width: 1100px; margin: 0 auto; width: 100%; }
+    h2 { margin: 0 0 1rem; color: #f0c330; }
+    form.searchbar {
+      display: grid; grid-template-columns: 1fr auto; gap: .75rem;
+      background: rgba(255,255,255,.06); padding: 1rem; border-radius: .5rem;
+    }
+    .searchbar input[type="text"] {
+      padding: .7rem .9rem; border: none; border-radius: .4rem; outline: none;
+    }
+    .searchbar button {
+      padding: .7rem 1rem; border: none; border-radius: .4rem; cursor: pointer;
+      font-weight: 600; background: #f0c330; color: #001f3f;
+    }
+    table {
+      width: 100%; border-collapse: collapse; margin-top: 1rem;
+      background: rgba(0,0,0,.15); border-radius: .5rem; overflow: hidden;
+    }
+    thead th { text-align: left; padding: .9rem; background: rgba(0,0,0,.25); }
+    tbody td { padding: .9rem; border-top: 1px solid rgba(255,255,255,.07); }
+    a.link { color: #ffd34d; text-decoration: none; font-weight: 600; }
+    a.link:hover { text-decoration: underline; }
+    .empty {
+      margin-top: 1rem; background: rgba(0,0,0,.15); padding: 1rem;
+      border-radius: .5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div th:replace="fragments/header :: header"></div>
+
+  <main>
+    <h2>Buscar Clientes</h2>
+
+    <form class="searchbar" th:action="@{/clientes}" method="get">
+      <input type="text" name="email" placeholder="Buscar por email..." th:value="${emailBusqueda}">
+      <button type="submit">Buscar</button>
+    </form>
+
+    <table th:if="${listaClientes != null and !#lists.isEmpty(listaClientes)}">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Email</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="c : ${listaClientes}">
+          <td th:text="${c.nombre}"></td>
+          <td th:text="${c.apellido}"></td>
+          <td th:text="${c.email}"></td>
+          <td>
+			<a class="link" th:href="@{/cliente/detalle/{id}(id=${c.id})}">
+			  Ver Detalle
+			</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="empty" th:if="${listaClientes != null and #lists.isEmpty(listaClientes)}">
+      <span>No se han encontrado clientes.</span>
+    </div>
+
+  </main>
+
+  <div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto | Videoclub Sakila</title>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh;
+      background: linear-gradient(180deg, #001f3f, #003366); color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    main { 
+      flex: 1; padding: 2rem; max-width: 1100px; margin: 0 auto; 
+      display: grid; grid-template-columns: 1fr 2fr; gap: 2rem;
+    }
+    h2 { margin: 0 0 1rem; color: #f0c330; grid-column: 1 / -1; }
+    
+    /* Columna de info */
+    .info-contacto { background: rgba(0,0,0,.15); padding: 1.5rem; border-radius: .5rem; }
+    .info-contacto h3 { margin-top: 0; color: #f0c330; }
+    .info-contacto p { margin: .5rem 0; line-height: 1.6; }
+    
+    /* Columna de formulario */
+    .formulario { background: rgba(0,0,0,.15); padding: 1.5rem; border-radius: .5rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; margin-bottom: .5rem; font-weight: 600; }
+    .form-group input, .form-group textarea {
+      width: 100%; box-sizing: border-box; /* Para que el padding no desborde */
+      padding: .7rem .9rem; border: none; border-radius: .4rem;
+      outline: none; background: rgba(255,255,255,.9);
+    }
+    .form-group textarea { height: 120px; resize: vertical; }
+    button {
+      padding: .8rem 1.2rem; border: none; border-radius: .4rem; cursor: pointer;
+      font-weight: 600; background: #f0c330; color: #001f3f; font-size: 1rem;
+    }
+    button:hover { background: #ffd34d; }
+    
+  </style>
+</head>
+<body>
+
+  <div th:replace="fragments/header :: header"></div>
+
+  <main>
+    <h2>Contáctanos</h2>
+
+    <div class="info-contacto">
+      <h3>Información de Contacto</h3>
+      <p>
+        <strong>Dirección:</strong><br>
+        Calle Inventada, 11<br>
+        33209, Gijón, España
+      </p>
+      <p>
+        <strong>Teléfono:</strong><br>
+        +34 985 345 678
+      </p>
+      <p>
+        <strong>Email:</strong><br>
+        contacto@sakilavideoclub.es
+      </p>
+    </div>
+
+    <div class="formulario">
+      <h3>Formulario de Contacto</h3>
+      
+      <form action="#" method="post">
+        <div class="form-group">
+          <label for="nombre">Tu Nombre</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Tu Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" required></textarea>
+        </div>
+        
+        <button type="button">Enviar</button>
+      </form>
+    </div>
+    
+  </main>
+
+  <div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

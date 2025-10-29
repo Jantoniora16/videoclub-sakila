@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videoclub Sakila</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <style>
+        /* 🔹 Fondo azul degradado y estructura de página completa */
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #001f3f, #003366);
+            color: #fff;
+        }
+        main {
+            flex: 1; /* Ocupa todo el espacio disponible entre header y footer */
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+        h2 {
+            color: #f0c330;
+            font-size: 2rem;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background-color: #f0c330;
+            color: #001f3f;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #ffdb4d;
+        }
+    </style>
+</head>
+<body>
+
+    
+	<!-- Fragmento Header -->
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<main>
+	    <section>
+	        <h2>Bienvenido al Videoclub Sakila</h2>
+	        <p>Gestiona películas, clientes y alquileres de forma sencilla.</p>
+	        <a class="btn" th:href="@{/catalogo}">Explorar catálogo</a>
+	    </section>
+	</main>
+
+	<!-- Fragmento Footer -->
+	<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

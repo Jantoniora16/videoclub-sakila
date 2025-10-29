@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title th:text="'Ficha · ' + ${pelicula.titulo}">Ficha · Película</title>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh;
+      background: linear-gradient(180deg, #001f3f, #003366); color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    main { flex: 1; padding: 2rem; max-width: 900px; margin: 0 auto; }
+    h2 { color: #f0c330; margin: 0 0 1rem; }
+    .card {
+      background: rgba(255,255,255,0.08);
+      padding: 1.2rem 1.4rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    }
+    dl { margin: 0; display: grid; grid-template-columns: 180px 1fr; row-gap: .6rem; column-gap: 1rem; }
+    dt { font-weight: 700; color: #ffd34d; }
+    dd { margin: 0; }
+    a.back { color: #ffd34d; text-decoration: none; display:inline-block; margin-bottom: 1rem; }
+    a.back:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+<h1 th:text="${error}"/>
+  <!-- Header -->
+  <div th:replace="~{fragments/header :: header}"></div>
+
+  <main>
+    <!--<a class="back" th:href="@{/peliculas}">← Volver al listado</a> <-->
+    <h2 th:text="${pelicula.titulo}">Título de la película</h2>
+
+   <div class="card">
+      <dl>
+        <dt>Descripción</dt>
+        <dd th:text="${pelicula.descripcion}">—</dd>
+
+        <dt>Año de estreno</dt>
+        <dd th:text="${pelicula.estreno}">—</dd>
+
+        <dt>Duración</dt>
+        <dd>
+          <span th:text="${pelicula.duracion}">—</span> min
+        </dd>
+
+        <dt>Clasificación</dt>
+        <dd th:text="${pelicula.clasificacion}">—</dd>
+
+        
+      </dl>
+    </div> 
+  </main>
+
+  <!-- Footer -->
+  <div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

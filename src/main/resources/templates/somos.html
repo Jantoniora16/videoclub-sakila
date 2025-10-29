@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiénes somos | Videoclub Sakila</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #001f3f, #003366);
+      color: #fff;
+    }
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      line-height: 1.7;
+      text-align: justify;
+    }
+    h2 {
+      text-align: center;
+      color: #f0c330;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+    .highlight {
+      color: #f0c330;
+      font-weight: bold;
+    }
+    .team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease;
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card img {
+      width: 90px; height: 90px; border-radius: 50%;
+      margin-bottom: 1rem; object-fit: cover;
+      border: 3px solid #f0c330;
+    }
+    .card h3 { margin: 0.5rem 0; color: #f0c330; }
+    .card p { font-size: 0.9rem; color: #ddd; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div th:replace="fragments/header :: header"></div>
+
+  <main>
+    <h2>Quiénes somos</h2>
+
+    <p>
+      En <span class="highlight">Videoclub Sakila</span> creemos que el cine es una de las mejores formas de conectar a las personas.
+      Nuestra misión es conservar el espíritu de los antiguos videoclubs y adaptarlo al mundo digital.
+      Desde nuestros inicios, trabajamos para ofrecer una experiencia de usuario sencilla, moderna y cercana,
+      donde cada cliente puede descubrir, alquilar y disfrutar de películas de todos los géneros.
+    </p>
+
+    <p>
+      Este proyecto forma parte de un esfuerzo por mantener viva la pasión por el cine clásico y contemporáneo.
+      Apostamos por la <span class="highlight">innovación tecnológica</span> y la <span class="highlight">transformación digital</span>
+      del sector audiovisual, creando una plataforma que une tradición y modernidad.
+    </p>
+
+    
+    
+  </main>
+
+  <!-- Footer -->
+  <div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

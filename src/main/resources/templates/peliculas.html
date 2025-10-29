@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Películas | Videoclub Sakila</title>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body {
+      display: flex; flex-direction: column; min-height: 100vh;
+      background: linear-gradient(180deg, #001f3f, #003366); color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    main { flex: 1; padding: 2rem; max-width: 1100px; margin: 0 auto; }
+    h2 { margin: 0 0 1rem; color: #f0c330; }
+    form.searchbar {
+      display: grid; grid-template-columns: 1fr auto; gap: .75rem;
+      background: rgba(255,255,255,.06); padding: 1rem; border-radius: .5rem;
+      backdrop-filter: blur(3px);
+    }
+    .searchbar input[type="text"] {
+      padding: .7rem .9rem; border: none; border-radius: .4rem;
+      outline: none;
+    }
+    .searchbar button {
+      padding: .7rem 1rem; border: none; border-radius: .4rem; cursor: pointer;
+      font-weight: 600; background: #f0c330; color: #001f3f;
+    }
+    .meta { margin-top: .75rem; font-size: .95rem; opacity: .9; }
+    table {
+      width: 100%; border-collapse: collapse; margin-top: 1rem;
+      background: rgba(0,0,0,.15); border-radius: .5rem; overflow: hidden;
+    }
+    thead th {
+      text-align: left; padding: .9rem; background: rgba(0,0,0,.25);
+      font-weight: 600; color: #f6f6f6;
+    }
+    tbody td { padding: .9rem; border-top: 1px solid rgba(255,255,255,.07); }
+    a.link { color: #ffd34d; text-decoration: none; font-weight: 600; }
+    a.link:hover { text-decoration: underline; }
+    .empty {
+      margin-top: 1rem; background: rgba(0,0,0,.15); padding: 1rem;
+      border-radius: .5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div th:replace="fragments/header :: header"></div>
+
+  <main>
+    <h2>Películas</h2>
+
+    <!-- Buscador -->
+    <!-- Enviamos GET /peliculas?q=... -->
+    <form class="searchbar" th:action="@{/peliculas}" method="get">
+      <input type="text" name="titulo" placeholder="Buscar por título…"
+             th:value="${titulo}">
+      <button type="submit">Buscar</button>
+    </form>
+
+    <!-- Info de resultados -->
+    <div class="meta"
+         th:if="${titulo != null and #strings.isNotEmpty(titulo)}"
+         th:text="'Búsqueda: &quot;' + ${titulo} + '&quot; · ' + (${total != null} ? ${total} : (${peliculas != null} ? ${#lists.size(peliculas)} : 0)) + ' resultado(s)'">
+      <!-- Texto generado por Thymeleaf -->
+    </div>
+
+    <!-- Tabla de resultados -->
+    <table th:if="${listaPelis != null and !#lists.isEmpty(listaPelis)}">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Descripción</th>
+          <th>Duración (min)</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="p : ${listaPelis}">
+          <td>
+            
+            <a class="link"
+               th:href="@{/detallepelicula/{id_peli}(id_peli=${p.id})}"
+               th:text="${p.titulo}">Título</a>
+          </td>
+		  
+          <td th:text="${p.descripcion}">Descripción</td>
+          <td th:text="${p.duracion}">120</td>
+          <td th:text="${p.clasificacion}">PG</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Sin resultados -->
+    <div class="empty" th:if="${peliculas == null or #lists.isEmpty(peliculas)}">
+      <span th:if="${q == null or #strings.isEmpty(q)}">
+        Introduce un título y pulsa <strong>Buscar</strong>.
+      </span>
+      <span th:if="${q != null and #strings.isNotEmpty(q)}">
+        No se han encontrado películas para <strong th:text="|“${q}”|">“q”</strong>.
+      </span>
+    </div>
+
+    <!-- (Opcional) paginación simple -->
+    <!--
+    <nav th:if="${page != null}">
+      <a th:if="${page.hasPrevious}" th:href="@{/peliculas(q=${q},page=${page.number-1},size=${page.size})}">« Anterior</a>
+      <span th:text="|Página ${page.number+1} de ${page.totalPages}|">Página 1 de 10</span>
+      <a th:if="${page.hasNext}" th:href="@{/peliculas(q=${q},page=${page.number+1},size=${page.size})}">Siguiente »</a>
+    </nav>
+    -->
+  </main>
+
+  <!-- Footer -->
+  <div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

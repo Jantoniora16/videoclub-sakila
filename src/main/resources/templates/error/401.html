@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>401 · No autorizado</title>
+<style>html,body{height:100%;margin:0;font-family:Segoe UI,Tahoma,Verdana,sans-serif}body{display:flex;flex-direction:column;min-height:100vh;background:linear-gradient(180deg,#001f3f,#003366);color:#fff}main{flex:1;display:flex;align-items:center;justify-content:center;padding:2rem}.card{max-width:720px;width:100%;background:rgba(255,255,255,.08);padding:2rem;border-radius:12px;box-shadow:0 3px 8px rgba(0,0,0,.3);text-align:center}h1{margin:0 0 .5rem;color:#f0c330;font-size:2rem}.meta{opacity:.9;font-size:.95rem;margin-top:.75rem}.btn{display:inline-block;margin-top:1.2rem;padding:.8rem 1.2rem;background:#f0c330;color:#001f3f;border-radius:8px;text-decoration:none;font-weight:700}.btn:hover{background:#ffdb4d}</style></head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<main><div class="card">
+  <h1>401 · No autorizado</h1>
+  <p>Necesitas iniciar sesión o credenciales válidas para acceder.</p>
+  <div class="meta">
+    <div th:if="${message}">Detalle: <span th:text="${message}">—</span></div>
+    <div th:if="${path}">Ruta: <span th:text="${path}">/</span></div>
+  </div>
+  <a class="btn" th:href="@{/}">Volver al inicio</a>
+</div></main>
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body></html>

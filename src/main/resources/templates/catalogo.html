@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo | Videoclub Sakila</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #001f3f, #003366);
+      color: #fff;
+    }
+    main {
+      flex: 1;
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h2 {
+      text-align: center;
+      color: #f0c330;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      background: rgba(255,255,255,0.08);
+      margin: 0.4rem 0;
+      padding: 0.8rem 1rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      transition: background-color 0.2s, transform 0.1s;
+    }
+    li:hover {
+      background-color: rgba(255,255,255,0.15);
+      transform: translateX(2px);
+    }
+    a.pelicula-link {
+      color: #ffd34d;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a.pelicula-link:hover {
+      text-decoration: underline;
+    }
+    .empty {
+      text-align: center;
+      background: rgba(255,255,255,0.08);
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+      font-style: italic;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div th:replace="~{fragments/header :: header}"></div>
+
+  <main>
+    <h2>Catálogo de Películas</h2>
+
+    <!-- Lista de películas -->
+    <ul >
+      <li th:each="p : ${listapelis}">
+        <a class="pelicula-link"
+           th:href="@{/detallepelicula/{id}(id=${p.id})}"
+           th:text="${p.titulo}">Título de película</a>
+		 <span th:text="${p.descripcion}"</span>  
+      </li>
+    </ul>
+	
+	
+
+	<!-- Si no hay películas -->
+    <div class="empty" th:if="${peliculas == null or #lists.isEmpty(peliculas)}">
+      No se encontraron películas en el catálogo.
+    </div> 
+  </main>
+
+  <!-- Footer -->
+  <div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>
