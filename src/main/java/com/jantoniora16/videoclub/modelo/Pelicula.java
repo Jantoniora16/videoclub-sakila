@@ -1,4 +1,4 @@
-package com.videoclub.sakila;
+package com.jantoniora16.videoclub.modelo;
 
 public class Pelicula {
 

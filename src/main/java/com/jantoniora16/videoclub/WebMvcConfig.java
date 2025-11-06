@@ -1,4 +1,4 @@
-package com.videoclub.sakila;
+package com.jantoniora16.videoclub;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

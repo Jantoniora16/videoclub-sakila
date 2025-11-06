@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.6</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.videoclub</groupId>
-	<artifactId>sakila</artifactId>
+		<version>3.5.7</version>
+		<relativePath/> </parent>
+	
+	<groupId>com.jantoniora16</groupId>
+	<artifactId>videoclub</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>videoclub_v1</name>
+	<name>videoclub</name>
 	<description>Aplicacion Web Videoclub Sakila</description>
 	<url/>
 	<licenses>
@@ -64,12 +64,8 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.videoclub</groupId>
-			<artifactId>sakila</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
+		
+		</dependencies>
 
 	<build>
 		<plugins>
